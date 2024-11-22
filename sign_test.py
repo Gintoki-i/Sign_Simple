@@ -18,7 +18,7 @@ def AES_encrypt(data):
     return encrypted_text_hex
 
 
-loginUrl = 'https://api.moguding.net:9000/session/user/v3/login'
+loginUrl = 'https://api.moguding.net:9000/session/user/v6/login'
 saveUrl = "https://api.moguding.net:9000/attendence/clock/v2/save"
 
 # 获取 Token
