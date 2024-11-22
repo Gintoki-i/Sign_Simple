@@ -24,9 +24,9 @@ saveUrl = "https://api.moguding.net:9000/attendence/clock/v2/save"
 # 获取 Token
 def getToken(account, password):
     data = {
-        "password": AES_encrypt(password),
+        "password": AES_encrypt(password),  # 密码
         "t": AES_encrypt(int(time.time() * 1000)),
-        "phone": AES_encrypt(account),
+        "phone": AES_encrypt(account),  # 账号
         "loginType": "android",
         "uuid": ""
     }
@@ -34,7 +34,17 @@ def getToken(account, password):
                                                  'User-Agent': 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; MIX 3 Build/QKQ1.190828.002) '
                                                                'AppleWebKit/533.1 (KHTML, like Gecko) Version/5.0 Mobile Safari/533.1',
                                                  })
-    return resp['data']['token']
+
+    # 打印响应内容以调试
+    print("API Response:", resp)
+
+    # 检查 'data' 是否存在
+    if 'data' in resp:
+        return resp['data']['token']
+    else:
+        print("Error: 'data' key not found in response.")
+        return None
+
 
 # POST 请求函数
 def postUrl(url, headers, data):
