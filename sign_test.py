@@ -30,20 +30,20 @@ def getToken(account, password):
         "loginType": "android",
         "uuid": ""
     }
-    resp = postUrl(loginUrl, data=data, headers={'content-type': 'application/json; charset=UTF-8',
-                                                 'User-Agent': 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; MIX 3 Build/QKQ1.190828.002) '
-                                                               'AppleWebKit/533.1 (KHTML, like Gecko) Version/5.0 Mobile Safari/533.1',
-                                                 })
+    resp = postUrl(loginUrl, data=data, headers={
+        'content-type': 'application/json; charset=UTF-8',
+        'User-Agent': 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; MIX 3 Build/QKQ1.190828.002) AppleWebKit/533.1 (KHTML, like Gecko) Version/5.0 Mobile Safari/533.1',
+    })
 
-    # 打印响应内容以调试
-    print("API Response:", resp)
+    print("API Response:", resp)  # 打印完整响应
 
-    # 检查 'data' 是否存在
+    # 检查响应是否包含 data
     if 'data' in resp:
         return resp['data']['token']
     else:
         print("Error: 'data' key not found in response.")
         return None
+
 
 
 # POST 请求函数
