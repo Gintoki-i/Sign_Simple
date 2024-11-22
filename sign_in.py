@@ -42,7 +42,7 @@ def postUrl(url, headers, data):
     return resp.json()
 
 # 执行签到
-def clock_in(account, password, address, clock_type):
+def clock_in(account, password, address, province, city, clock_type):
     mail_host = "smtp.qq.com"
     mail_user = ""  # 发送人邮箱
     mail_pass = "nxpkpuuquwcjdied"  # 授权码
@@ -55,8 +55,8 @@ def clock_in(account, password, address, clock_type):
     data = {
         "country": "中国",
         "address": address,  # 签到地址
-        "province": "广西壮族自治区",  # 签到省份
-        "city": "桂林市",  # 签到城市
+        "province": province,  # 签到省份
+        "city": city,  # 签到城市
         "description": "打卡下班" if clock_type == "END" else "打卡上班",  # 签到文本
         "planId": "169dea675fba3b92187a5880ac99f4b2",  # 获取的 planId
         "type": clock_type,  # START 上班 END 下班
@@ -112,10 +112,10 @@ def schedule_sign_in():
 
     if current_hour == 8:  # 8点上班
         for acc in config['accounts']:
-            clock_in(acc['account'], acc['password'], acc['address'], "START")
+            clock_in(acc['account'], acc['password'], acc['address'], acc['province'], acc['city'], "START")
     elif current_hour == 18:  # 18点下班
         for acc in config['accounts']:
-            clock_in(acc['account'], acc['password'], acc['address'], "END")
+            clock_in(acc['account'], acc['password'], acc['address'], acc['province'], acc['city'], "END")
 
 # 调用定时签到函数
 schedule_sign_in()
