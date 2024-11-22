@@ -1,13 +1,6 @@
 {
   "accounts": [
     {
-      "account": "账号1",
-      "password": "密码1",
-      "address": "详细地址1",
-      "province": "省份",
-      "city": "城市"
-    },
-    {
       "account": "19104948584",
       "password": "231225Zxs",
       "address": "东莞市湃泊科技有限公司",
