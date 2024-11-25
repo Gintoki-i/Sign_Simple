@@ -1,20 +1,8 @@
-name: 输出执行时的 UTC 和 CST 时间
-
-on:
-  schedule:
-    - cron: "0 * * * *"  # 每小时执行一次
-
 jobs:
-  output_time:
+  check_time:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 获取当前 UTC 和 CST 时间
+      - name: 输出当前时间（UTC 和 CST）
         run: |
-          # 获取当前的 UTC 时间
-          current_utc=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          echo "执行时的 UTC 时间: $current_utc"
-
-          # 获取当前的 CST 时间（中国标准时间）
-          current_cst=$(TZ='Asia/Shanghai' date +"%Y-%m-%d %H:%M:%S CST")
-          echo "执行时的 CST 时间: $current_cst"
+          echo "当前 UTC 时间: $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          echo "当前 CST 时间: $(TZ='Asia/Shanghai' date +"%Y-%m-%d %H:%M:%S CST")"
